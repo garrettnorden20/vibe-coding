@@ -6,8 +6,8 @@ an unbuilt React frontend and an Express + SQLite backend.
 ## Frontend
 
 The frontend lives in `frontend/` and uses React via CDN along with Leaflet for the map.
-Open `frontend/index.html` in a browser to try it. Dropping a pin will send a POST
-request to `/pins` on the same origin.
+Start the backend server and then visit `http://localhost:3000/` in your browser.
+Dropping a pin will send a POST request to `/pins` on the same origin.
 
 ## Backend
 
