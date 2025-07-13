@@ -29,6 +29,22 @@ function App() {
     }
   }, [location, mapReady]);
 
+  React.useEffect(() => {
+    if (mapReady && location) {
+      const [lat, lng] = location.map((x) => Number(x.toFixed(3)));
+      fetch(`/pins?lat=${lat}&lng=${lng}`)
+        .then((r) => r.json())
+        .then((data) => {
+          data.forEach((p) => {
+            L.marker([p.lat, p.lng])
+              .addTo(mapRef.current)
+              .bindPopup(`${p.message}`);
+          });
+        })
+        .catch(() => {});
+    }
+  }, [mapReady, location]);
+
   const dropPin = () => {
     if (!mapRef.current) return;
     navigator.geolocation.getCurrentPosition((pos) => {
